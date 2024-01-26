@@ -380,7 +380,9 @@
 "Assets/script/FrontDiver.cs"
 "Assets/script/GameManager.cs"
 "Assets/script/squid.cs"
+"Assets/script/StartButton.cs"
 "Assets/script/stone.cs"
+"Assets/script/ToMainMenu.cs"
 "Assets/script/Weapon.cs"
 -langversion:9.0
 

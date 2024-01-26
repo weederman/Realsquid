@@ -35,7 +35,7 @@ public class squid : MonoBehaviour
                 Ink= true;
             }
         }
-        if(Time.timeScale!=0) GameManager.instance.Score();
+        
     }
     private void FixedUpdate()
     {

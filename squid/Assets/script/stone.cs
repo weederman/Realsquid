@@ -6,7 +6,7 @@ public class stone : MonoBehaviour
 {
     public float moveSpeed = 10f;
     public Diver diver;
-    private float minX = -8;
+    private float minX = -10;
     // Start is called before the first frame update
     void Start()
     {

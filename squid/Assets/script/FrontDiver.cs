@@ -6,7 +6,7 @@ public class FrontDiver : MonoBehaviour
 {
     public float moveSpeed = 10f;
 
-    private float minX = -8;
+    private float minX = -10;
     void Start()
     {
         
@@ -19,6 +19,14 @@ public class FrontDiver : MonoBehaviour
         if (transform.position.x < minX)
         {
             Destroy(gameObject);
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Collide!");
+            GameManager.instance.SetGameOver();
         }
     }
 }
