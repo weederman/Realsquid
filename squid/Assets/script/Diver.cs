@@ -7,7 +7,7 @@ public class Diver : MonoBehaviour
 {
     public float speed;
     private Rigidbody2D rigid;
-    private float[] diverPosX = { -6f, -3.5f, -2.5f };
+    private float[] diverPosX = { -8f, -4f, -3f };
     public bool collide = false;
     public int state = 0;
 
@@ -24,8 +24,8 @@ public class Diver : MonoBehaviour
         rigid.AddForce(new Vector2(0, moveInput * speed));
 
         // DiverMove 실행 여부 확인
-        if (collide)
-        {
+        if (collide&&Time.timeScale!=0f)
+        {   
             DiverMove();
         }
     }
