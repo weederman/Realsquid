@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         GameOverPanel.SetActive(false);
+        Time.timeScale = 1f;
         StartCoroutine(IncreaseScoreCoroutine());
     }
     private void Update()
