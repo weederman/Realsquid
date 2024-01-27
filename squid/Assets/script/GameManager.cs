@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     private GameObject GameOverPanel;
     public static GameManager instance = null;
     [SerializeField]
-    public int score = 0;
+    public int number = 0;
     
     private TMP_Text ScorePanel;
     private TMP_Text EndScore;
@@ -22,37 +22,39 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
-        GameOverPanel= GameObject.Find("Canvas/GameOverPanel");
+        GameOverPanel = GameObject.Find("Canvas/GameOverPanel");
         EndScore = GameObject.Find("Canvas/GameOverPanel/EndScore").GetComponent<TMP_Text>();
         ScorePanel = GameObject.Find("Canvas/ScorePanelBox/ScorePanel").GetComponent<TMP_Text>();
-        isGameOver = false;
+        
     }
     public void Start()
     {
         GameOverPanel.SetActive(false);
-        isGameOver = false;
+        StartCoroutine(IncreaseScoreCoroutine());
     }
     private void Update()
     {
-        Debug.Log(isGameOver);
-        if (!isGameOver)
-        {
-            Score();
-            ScorePanel.SetText(score.ToString());
-        }
-            //else Debug.Log("Game is already over!");
+        //Debug.Log(isGameOver);
     }
-    public void Score()
+    private IEnumerator IncreaseScoreCoroutine()
     {
-        score += 1;
-        
-        //Debug.Log(score);
+        while (!isGameOver)
+        {
+            yield return new WaitForSeconds(0.1f); // 1초 대기
+
+            if (!isGameOver)
+            {
+                number+=1;
+                ScorePanel.SetText(number.ToString());// 10점씩 증가
+                EndScore.SetText("Score:" + number.ToString());
+            }
+        }
     }
-    
 
     public void SetGameOver()
     {
         isGameOver = true;
+        StopCoroutine(IncreaseScoreCoroutine());
         Debug.Log("isGameover set true");
         EnemySpawner enemySpawner = FindObjectOfType<EnemySpawner>();
         if (enemySpawner != null) 
@@ -61,12 +63,13 @@ public class GameManager : MonoBehaviour
         Debug.Log("Game Over!");
         }
         GameOverPanel.SetActive(true);
+        
         bool a = EndScore.IsActive();
         bool b=ScorePanel.IsActive();
         Debug.Log("Endscore:" + a);
         Debug.Log("ScorePaenl:" + b);
-        Debug.Log("Score:" + score);
-        EndScore.SetText("Score:" + score.ToString());
+        Debug.Log("Score:" + number);
+        
     }
     public void RestartGame()
     {
