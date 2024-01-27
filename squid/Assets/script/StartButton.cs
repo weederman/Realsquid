@@ -6,7 +6,11 @@ using UnityEngine.SceneManagement;
 public class StartButton : MonoBehaviour
 {
     // Start is called before the first frame update
-   public void GameStart()
+    private void Start()
+    {
+        GameManager.instance.Awake();
+    }   
+    public void GameStart()
     {
         GameManager.instance.StartGame();
     }
